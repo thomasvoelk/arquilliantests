@@ -1,7 +1,6 @@
 package test.cdi;
 
 import org.jboss.shrinkwrap.api.*;
-import org.jboss.shrinkwrap.api.asset.*;
 import org.jboss.shrinkwrap.api.spec.*;
 
 public class MinmalArchive {
@@ -9,6 +8,6 @@ public class MinmalArchive {
 
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage("test.cdi")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsManifestResource("test-beans.xml", "beans.xml");
     }
 }

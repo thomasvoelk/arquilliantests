@@ -11,4 +11,9 @@ public class Greeter {
     String createGreeting(String name) {
         return "Hello, " + name;
     }
+
+    @XxxIsAdded
+    public String interceptorAddsXxxTo(String source) {
+        return source;
+    }
 }
