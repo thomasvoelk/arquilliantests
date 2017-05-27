@@ -2,8 +2,6 @@ package test.cdi;
 
 import org.jboss.arquillian.container.test.api.*;
 import org.jboss.arquillian.junit.*;
-import org.jboss.shrinkwrap.api.*;
-import org.jboss.shrinkwrap.api.asset.*;
 import org.jboss.shrinkwrap.api.spec.*;
 import org.junit.*;
 import org.junit.runner.*;
@@ -17,7 +15,7 @@ public class InjectTest {
 
     @Deployment
     public static JavaArchive createDeployment() {
-        return MinmalArchive.jar();
+        return MinimalArchive.jar();
     }
 
     @Inject

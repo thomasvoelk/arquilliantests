@@ -15,7 +15,7 @@ public class InterceptorTest {
 
     @Deployment
     public static JavaArchive createDeployment() {
-        return MinmalArchive.jar();
+        return MinimalArchive.jar();
     }
 
     @Inject

@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class ProducerTest {
     @Deployment
     public static JavaArchive createDeployment() {
-        return MinmalArchive.jar();
+        return MinimalArchive.jar();
     }
 
     @Inject
