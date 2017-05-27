@@ -3,15 +3,8 @@
 
     <!-- Enable features -->
     <featureManager>
-        <feature>servlet-3.1</feature>
         <feature>localConnector-1.0</feature>
-        <feature>cdi-1.2</feature>
-        <!--<feature>wasJmsServer-1.0</feature>-->
-        <!--<feature>wasJmsClient-2.0</feature>-->
-        <!--<feature>jpa-2.1</feature>-->
-        <!--<feature>javaee-7.0</feature>-->
-        <!--<feature>jpa-2.1</feature>-->
-        <!--<feature>ejbLite-3.2</feature>-->
+        <feature>javaee-7.0</feature>
     </featureManager>
 
     <!-- To access this server from a remote client add a host attribute 
