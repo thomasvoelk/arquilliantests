@@ -8,6 +8,6 @@ public class MinimalArchive {
 
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage("test.cdi")
-                .addAsManifestResource("test-beans.xml", "beans.xml");
+                .addAsManifestResource("test-interceptor-beans.xml", "beans.xml");
     }
 }
