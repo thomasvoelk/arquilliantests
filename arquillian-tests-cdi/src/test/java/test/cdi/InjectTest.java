@@ -13,15 +13,11 @@ import javax.inject.*;
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
-public class GreeterTest {
+public class InjectTest {
 
     @Deployment
     public static JavaArchive createDeployment() {
-
-        JavaArchive jar = ShrinkWrap.create(JavaArchive.class)
-                .addPackage("test.cdi")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-        return jar;
+        return MinmalArchive.jar();
     }
 
     @Inject
