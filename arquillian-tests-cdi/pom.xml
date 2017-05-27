@@ -66,6 +66,7 @@
                         <configuration>
                             <skip>false</skip>
                             <serverName>defaultServer</serverName>
+                            <configFile>${basedir}/src/test/resources/arquillian-wlp-managed-8.5-jee7/server.xml</configFile>
                             <assemblyArtifact>
                                 <groupId>com.ibm.websphere.appserver.runtime</groupId>
                                 <artifactId>wlp-javaee7</artifactId>
