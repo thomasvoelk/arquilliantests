@@ -18,7 +18,7 @@
         <profile>
             <id>arquillian-weld-ee-embedded-jee7</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
                 <dependency>
@@ -39,6 +39,106 @@
                     <artifactId>weld-core</artifactId>
                     <version>2.4.3.Final</version>
                     <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>arquillian-wlp-managed-8.5-jee7</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>net.wasdev.wlp.maven.plugins</groupId>
+                        <artifactId>liberty-maven-plugin</artifactId>
+                        <version>1.2</version>
+                        <executions>
+                            <execution>
+                                <id>create-server</id>
+                                <!-- Plugin execution only succeeds here in the correct order because
+                                     execution id of the test is not 'default-test'.
+                                     Because Maven. See MNG-5799 and MNG-5987 -->
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>create-server</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <skip>false</skip>
+                            <serverName>defaultServer</serverName>
+                            <assemblyArtifact>
+                                <groupId>com.ibm.websphere.appserver.runtime</groupId>
+                                <artifactId>wlp-javaee7</artifactId>
+                                <version>17.0.0.1</version>
+                                <type>zip</type>
+                            </assemblyArtifact>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>copy-derby</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.apache.derby</groupId>
+                                            <artifactId>derby</artifactId>
+                                            <version>10.13.1.1</version>
+                                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                            <argLine>-Dproject.build.directory=${project.build.directory}</argLine>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>wlp-dropins-deployment-test</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <skip>false</skip>
+                                    <reportsDirectory>${project.build.directory}/surefire-reports/wlp-dropins-deployment-test</reportsDirectory>
+                                    <systemPropertyVariables>
+                                        <arquillian.launch>arquillian-wlp-managed-8.5-jee7</arquillian.launch>
+                                    </systemPropertyVariables>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+
+            <dependencies>
+                <!-- org.jboss.arquillian -->
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-wlp-managed-8.5</artifactId>
+                    <version>1.0.0.Beta2</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.jboss.spec</groupId>
+                    <artifactId>jboss-javaee-6.0</artifactId>
+                    <version>1.0.0.Final</version>
+                    <type>pom</type>
+                    <scope>provided</scope>
                 </dependency>
             </dependencies>
         </profile>
