@@ -12,5 +12,12 @@
             </property>
         </configuration>
     </container>
+    <container qualifier="arquillian-glassfish3-embedded-h2" default="false">
+        <configuration>
+            <property name="resourcesXml">
+                ${basedir}/src/test/resources/arquillian-glassfish3-embedded-h2/glassfish-resources.xml
+            </property>
+        </configuration>
+    </container>
 
 </arquillian>
