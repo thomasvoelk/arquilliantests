@@ -9,6 +9,7 @@ import org.junit.*;
 import org.junit.runner.*;
 
 import javax.inject.*;
+import javax.interceptor.*;
 import javax.persistence.*;
 import javax.persistence.criteria.*;
 import javax.transaction.*;
@@ -39,6 +40,9 @@ public class PersistenceTest {
 
     @Inject
     UserTransaction utx;
+
+    @Inject
+    GameRepository repository;
 
     @Before
     public void preparePersistenceTest() throws Exception {
@@ -79,40 +83,9 @@ public class PersistenceTest {
     }
 
     @Test
-    public void shouldFindAllGamesUsingJpqlQuery() throws Exception {
-        // given
-        String fetchingAllGamesInJpql = "select g from Game g order by g.id";
-
-        // when
-        System.out.println("Selecting (using JPQL)...");
-        List<Game> games = em.createQuery(fetchingAllGamesInJpql, Game.class).getResultList();
-
-        // then
+    public void shouldFindAllGames() throws Exception {
+        List<Game> games = repository.findAll();
         System.out.println("Found " + games.size() + " games (using JPQL):");
-        assertContainsAllGames(games);
-    }
-
-    @Test
-    public void shouldFindAllGamesUsingCriteriaApi() throws Exception {
-        // given
-        CriteriaBuilder builder = em.getCriteriaBuilder();
-        CriteriaQuery<Game> criteria = builder.createQuery(Game.class);
-
-        Root<Game> game = criteria.from(Game.class);
-        criteria.select(game);
-        // TIP: If you don't want to use the JPA 2 Metamodel,
-        // you can change the get() method call to get("id")
-//        criteria.orderBy(builder.asc(game.get(Game_.id)));
-        criteria.orderBy(builder.asc(game.get("id")));
-
-        // No WHERE clause, which implies select all
-
-        // when
-        System.out.println("Selecting (using Criteria)...");
-        List<Game> games = em.createQuery(criteria).getResultList();
-
-        // then
-        System.out.println("Found " + games.size() + " games (using Criteria):");
         assertContainsAllGames(games);
     }
 
