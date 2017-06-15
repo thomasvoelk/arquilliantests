@@ -27,7 +27,7 @@
         <writeDir>${server.config.dir}/dropins</writeDir>
     </remoteFileAccess>
 
-    <dataSource
+    <!--<dataSource
             id="h2"
             jndiName="jdbc/arquillian"
             type="javax.sql.ConnectionPoolDataSource">
@@ -43,6 +43,15 @@
 
     <library id="SharedLibrary_H2">
         <fileset dir="/Users/thomas/.m2/repository/com/h2database/h2/1.4.195/" id="Fileset_H2"/>
+    </library>-->
+
+    <dataSource id="DefaultDataSource" jndiName="jdbc/arquillian">
+        <jdbcDriver libraryRef="DerbyLib"/>
+        <properties.derby.embedded databaseName="target/databases/derby" createDatabase="create"/>
+    </dataSource>
+
+    <library id="DerbyLib">
+        <fileset dir="/Users/thomas/.m2/repository/org/apache/derby/derby/10.13.1.1/"/>
     </library>
 
 </server>
