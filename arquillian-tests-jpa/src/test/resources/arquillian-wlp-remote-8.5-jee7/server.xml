@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <feature>restConnector-1.0</feature>
+        <feature>javaee-7.0</feature>
+    </featureManager>
+
+    <httpEndpoint httpPort="9080" httpsPort="9443"
+                  id="defaultHttpEndpoint" host="*" />
+
+    <!-- userName and password should also be set in arquillian.xml to these
+        values -->
+    <quickStartSecurity userName="admin" userPassword="admin" />
+
+    <!-- Enable the keystore -->
+    <keyStore id="defaultKeyStore" password="password" />
+
+    <applicationMonitor updateTrigger="mbean" />
+    <logging consoleLogLevel="INFO" />
+
+
+    <!-- This section is needed to allow upload of files to the dropins directory,
+        the remote container adapter relies on this configuration -->
+    <remoteFileAccess>
+        <writeDir>${server.config.dir}/dropins</writeDir>
+    </remoteFileAccess>
+
+    <dataSource
+            id="h2"
+            jndiName="jdbc/arquillian"
+            type="javax.sql.ConnectionPoolDataSource">
+        <jdbcDriver
+                javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
+                javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"
+                javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
+                libraryRef="SharedLibrary_H2"/>
+        <properties
+                URL="jdbc:h2:mem:arquillian;DB_CLOSE_DELAY=-1"
+                databaseName="arquillian"/>
+    </dataSource>
+
+    <library id="SharedLibrary_H2">
+        <fileset dir="/Users/thomas/.m2/repository/com/h2database/h2/1.4.195/" id="Fileset_H2"/>
+    </library>
+
+</server>
