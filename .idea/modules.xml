@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/arquillian-tests-cdi/arquillian-tests-cdi.iml" filepath="$PROJECT_DIR$/arquillian-tests-cdi/arquillian-tests-cdi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/arquillian-tests-ejb/arquillian-tests-ejb.iml" filepath="$PROJECT_DIR$/arquillian-tests-ejb/arquillian-tests-ejb.iml" />
       <module fileurl="file://$PROJECT_DIR$/arquillian-tests-jpa/arquillian-tests-jpa.iml" filepath="$PROJECT_DIR$/arquillian-tests-jpa/arquillian-tests-jpa.iml" />
       <module fileurl="file://$PROJECT_DIR$/arquilliantests.iml" filepath="$PROJECT_DIR$/arquilliantests.iml" />
     </modules>

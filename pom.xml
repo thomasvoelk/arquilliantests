@@ -19,6 +19,7 @@
     <modules>
         <module>arquillian-tests-cdi</module>
         <module>arquillian-tests-jpa</module>
+        <module>arquillian-tests-ejb</module>
     </modules>
 
 
@@ -35,6 +36,14 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="arquillian-tests-cdi" />
+        <module name="arquillian-tests-ejb" />
         <module name="arquillian-tests-jpa" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="arquillian-tests-cdi" target="1.8" />
+      <module name="arquillian-tests-ejb" target="1.8" />
       <module name="arquillian-tests-jpa" target="1.8" />
       <module name="arquilliantests" target="1.8" />
     </bytecodeTargetLevel>
